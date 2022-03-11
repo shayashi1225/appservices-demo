@@ -1,0 +1,21 @@
+- from:
+    uri: kamelet:kafka-not-secured-source
+    steps:
+      - to:
+          uri: atlasmap:file:/etc/camel/resources/order-mapping_pgs.adm
+      - kamelet:
+          name: postgresql-sink
+          parameters:
+            serverPort: '5432'
+            serverName: postgresql.demo-pj
+            username: user221
+            password: oDRP8QTVX12YMpjC
+            databaseName: sampledb
+            query: >-
+              INSERT INTO ordertable
+              (orderid,orderitemname,ordertype,price,quantity,shipmentaddress,zipcode)
+              VALUES
+              (:#orderId,:#orderItemName,:#orderType,:#price,:#quantity,:#shipmentAddress,:#zipCode);
+    parameters:
+      topic: user1.earth.dbo.Orders
+      brokers: earth-cluster-kafka-bootstrap.demo-pj.svc:9092

@@ -1,0 +1,23 @@
+---
+openapi: 3.0.2
+info:
+  title: Camel K Object API
+  version: 1.0.0
+  description: A CRUD API for an object store
+paths:
+  /orders:
+    get:
+      parameters:
+      - name: orderId
+        description: ""
+        schema:
+          type: string
+        in: query
+        required: true
+      responses:
+        "200":
+          content:
+            application/octet-stream: {}
+          description: The object content
+      operationId: get
+      summary: Get the content of an object
