@@ -1,3 +1,4 @@
 quarkusapp/target
 decision-service/target
 .vscode
+.DS_Store
